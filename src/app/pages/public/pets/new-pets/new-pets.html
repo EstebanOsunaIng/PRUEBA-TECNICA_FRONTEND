@@ -1,0 +1,59 @@
+<form class="form form-register" [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <h1>Register Your Pets</h1>
+    <div class="form-content">
+        <div class="form-pets">
+
+
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" formControlName="name" />
+                <div class="error">
+                    Mensaje de error
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="type">type:</label>
+                <input type="type" id="type" formControlName="type" />
+                <div class="error">
+                    Mensaje de error
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="breed">breed: </label>
+                <input type="breed" id="breed" formControlName="breed" />
+                <div class="error">
+                    Mensaje de error
+                </div>
+            </div>
+            <div class="field">
+                <label for="age">age </label>
+                <input type="age" id="age" formControlName="age" />
+                <div class="error">
+                    Mensaje de error
+                </div>
+            </div>
+
+            <div>
+                <select formControlName="range" id="range-age">
+                    <option value="">Range: </option>
+                    @for (range of ranges; track $index) {
+                    <option [value]="range">{{range}}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="onwer-pets">Owner: </label>
+                <select formControlName="ownerId" id="onwer-pets">
+                    <option value="">Selected</option>
+
+                    @for (objOwner of owners ; track $index) {
+                    <option [value]="objOwner._id">{{objOwner.name}}</option>
+                    }
+                </select>
+
+            </div>
+
+        </div>
