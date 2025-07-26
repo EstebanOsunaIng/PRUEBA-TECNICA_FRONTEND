@@ -1,0 +1,51 @@
+
+<div class="page-appointments appointments-list">
+
+    <h1>AppointmentsList</h1>
+    <a href="#" routerLink="/appointments/new">Registrar nueva cita</a>
+    
+    @if (appointments.length>0) {
+     <table border="1">
+        <thead>
+            <th>
+                Name Pets:
+            </th>
+            <th>
+                Reason:
+            </th>
+            <th>
+                Date:
+            </th>
+            <th>
+                Veterinarian:
+            </th>
+            <th>
+                State:
+            </th>
+        </thead>
+        <tbody>
+            @for (appointment of appointments; track $index) {
+            <tr>
+                <td>{{ appointment.petsId.name }}</td>
+                <td>{{ appointment?.reason }}</td>
+                <td>{{ appointment?.date}}</td>
+                <td>{{ appointment?.veterinarianId.name}}</td>
+                <td>{{ appointment?.state }}</td>
+                
+                
+                <td>
+                    <a class="btn btn-primary" [routerLink]="[ '/appointments', 'list' ,appointment._id]" href="#">Actualizar</a>
+        
+                    <a class="btn btn-secondary" href="#" (click)="onDelete(appointment._id); $event.preventDefault() ">Delete </a>
+                </td>
+            </tr>
+            }           
+        </tbody>
+    </table>
+
+    }
+    @else{
+        <h3>No hay citas registradas</h3>
+    }
+    
+</div>

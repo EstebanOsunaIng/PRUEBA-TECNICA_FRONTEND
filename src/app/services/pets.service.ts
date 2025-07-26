@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class PetsServices {
 
     constructor(
-      public http: HttpClient,
+      private http: HttpClient,
     ){}
 
     registerPets(newPets:any){
@@ -22,6 +22,10 @@ export class PetsServices {
 
     getPetsbyId(id:string){
        return this.http.get<any>('http://localhost:3000/api/pets/'+ id)
+    }
+
+    deletePets(id: string){
+      return this.http.delete<any>('http://localhost:3000/api/pets/' + id )
     }
     
     updateSongs (id: string , updatePets : any){

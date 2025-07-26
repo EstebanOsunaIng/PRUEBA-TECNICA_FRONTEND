@@ -24,6 +24,11 @@ export class OwnerServices {
        return this.http.get<any>('http://localhost:3000/api/owner/'+ id)
     }
     
+
+    deleteOwners(id: string){
+      return this.http.delete<any>('http://localhost:3000/api/owner/' + id )
+    }
+
     updateOwners (id: string , updateOwners : any){
       return this.http.patch<any>('http://localhost:3000/api/owner/'+ id , updateOwners )
     }

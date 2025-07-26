@@ -1,0 +1,11 @@
+<h1>List Veterinaria</h1>
+<a href="#" routerLink="/veterinarians/new">Registrar nuevo dueño</a>
+<section>
+    @for ( veterinarian of veterinarians; track veterinarian._id ) {
+        <div class="veterinarians-card">
+            <h3>{{ veterinarian.name }}</h3>
+            <p><strong>Email: </strong>{{ veterinarian.email }}</p>
+            <p><strong>phone: </strong>{{ veterinarian.phone }}</p>
+        </div>
+    }
+</section>

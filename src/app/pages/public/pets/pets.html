@@ -1,0 +1,54 @@
+
+<div class="page-pets pets-list">
+
+    <h1>Pets List</h1>
+    <a href="#" routerLink="/pets/new">Registrar nueva mascota</a>
+    
+    @if (pets.length>0) {
+     <table border="1">
+        <thead>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Breed
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Range
+            </th>
+            <th>
+                Owner
+            </th>
+        </thead>
+        <tbody>
+            @for (pet of pets; track $index) {
+            <tr>
+                <td>{{ pet.name }}</td>
+                <td>{{ pet?.type }}</td>
+                <td>{{ pet?.breed}}</td>
+                <td>{{ pet?.age}}</td>
+                <td>{{ pet?.range }}</td>
+                <td>{{ pet?.ownerId.name }}</td>
+                
+                <td>
+                    <a class="btn btn-primary" [routerLink]="[ '/pets', 'edit', pet._id]" href="#">Actualizar</a>
+        
+                    <a class="btn btn-secondary" href="#" (click)="onDelete(pet._id); $event.preventDefault() ">Delete </a>
+                </td>
+            </tr>
+            }           
+        </tbody>
+    </table>
+
+    }
+    @else{
+        <h3>No hay canciones registradas</h3>
+    }
+    
+</div>

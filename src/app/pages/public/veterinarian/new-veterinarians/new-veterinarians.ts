@@ -1,38 +1,30 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PetsServices } from '../../../../services/pets.service';
-import { OwnerServices } from '../../../../services/owner.service';
+import { VeterinianServices } from '../../../../services/veterinarian.service';
 import { Router } from '@angular/router';
 
-
-
-
 @Component({
-  selector: 'app-pets',
-  imports: [ReactiveFormsModule,],
-  templateUrl: './new-pets.html',
-  styleUrl: './new-pets.css',
-  
+  selector: 'app-new-veterinarians',
+  imports: [ReactiveFormsModule],
+  templateUrl: './new-veterinarians.html',
+  styleUrl: './new-veterinarians.css'
 })
-export class Pets {
-ranges: any = [];
+export class NewVeterinarians {
+  
 formData!: FormGroup ;
-owners : any = []
+veterinarians : any = []
 
 
 constructor(
-  private petsServices : PetsServices,
-  private ownersServices : OwnerServices,
+  
+  private veterinarianServices : VeterinianServices,
   private router: Router
   )
   {
   this.formData = new FormGroup({
     name: new FormControl('',Validators.required),
-    type: new FormControl('',Validators.required),
-    breed: new FormControl('',Validators.required),
-    age: new FormControl('',Validators.required),
-    range: new FormControl('',Validators.required),
-    ownerId: new FormControl( '',Validators.required)
+    email: new FormControl('',Validators.required),
+    phone: new FormControl('',Validators.required),
   });
 }
 
@@ -49,10 +41,10 @@ onSubmit(){
   if(this.formData.valid){
 
     console.log(this.formData.value);
-    this.petsServices.registerPets(this.formData.value).subscribe({
+    this.veterinarianServices.registerVeterinian(this.formData.value).subscribe({
       next: ( data ) => {
         console.log(data);
-        this.router.navigateByUrl('/pets/list')
+        this.router.navigateByUrl('/veterinarians/list')
 
       },
       error:(error)=> {
@@ -66,10 +58,10 @@ onSubmit(){
 }
 
 ngOnInit() {
-    this.ownersServices.getOwners().subscribe({
+    this.veterinarianServices.getVeterinian().subscribe({
       next: ( data ) => {
         console.log ( data );
-        this.owners = data;
+        this.veterinarians = data;
       },
       error: ( error ) => {
         console.log ( error )
@@ -82,9 +74,5 @@ ngOnInit() {
   ngOnDestroy() {
     console.log( 'ngOnDestroy' );
   }
-
+  
 }
-
-
-
-

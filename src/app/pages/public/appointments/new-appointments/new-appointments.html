@@ -1,0 +1,122 @@
+<form class="form form-register" [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <h1>Register Your Appointments</h1>
+    <div class="form-content">
+        <div class="form-appointments">
+
+
+            <div class="field">
+                <label for="name-pets">NAME PET:</label>
+                <select formControlName="petsId" id="name-pets">
+                    <option value="">Selected..</option>
+
+                    @for (objPet of pets; track $index) {
+                    <option [value]="objPet._id">{{objPet.name}}</option>
+                    }
+                </select>
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('petsId')?.invalid
+                    && (formData.get('petsId')?.dirty
+                    || formData.get('petsId')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('petsId')?.errors?.['required']){
+                    <span>El nombre de la mascota es obligatoria</span>
+                    }
+                    @if(formData.get('petsId')?.errors?.['petsId']){
+                    <span>El nombre de la mascota es invalida</span>
+                    }
+                    }
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="name">REASON:</label>
+                <input type="text" id="name" formControlName="reason" />
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('reason')?.invalid
+                    && (formData.get('reason')?.dirty
+                    || formData.get('reason')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('reason')?.errors?.['required']){
+                    <span>La razon de la cita es obligatoria</span>
+                    }
+                    @if(formData.get('reason')?.errors?.['reason']){
+                    <span>El formato de la cita es invalido</span>
+                    }
+                    }
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="appointments-date">DATE:</label>
+                <input type="date" formControlName="date" id="appointments-date" value="">
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('date')?.invalid
+                    && (formData.get('date')?.dirty
+                    || formData.get('date')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('date')?.errors?.['required']){
+                    <span>La fecha de la cita es obligatoria</span>
+                    }
+                    @if(formData.get('date')?.errors?.['date']){
+                    <span>El formato de la fecha es invalido</span>
+                    }
+                    }
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="name-veterinarian">VETERINARIAN:</label>
+                <select formControlName="veterinarianId" id="veterinarianId">
+                    <option value="">Selected..</option>
+                    @for (objVeterinarian of veterinarian; track $index) {
+                    <option [value]="objVeterinarian._id">{{objVeterinarian.name}}</option>
+                    }
+                </select>
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('veterinarianId')?.invalid
+                    && (formData.get('veterinarianId')?.dirty
+                    || formData.get('veterinarianId')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('veterinarianId')?.errors?.['required']){
+                    <span>La fecha de la cita es obligatoria</span>
+                    }
+                    @if(formData.get('veterinarianId')?.errors?.['veterinarianId']){
+                    <span>El formato de la fecha es invalido</span>
+                    }
+                    }
+                </div>
+            </div>
+
+            <div class="field">
+                <label>STATE: </label>
+                <input type="radio" formControlName="state" value="pendiente" placeholder=""
+                    id="reserva-state-pendiente">
+                <label for="reserva-statte-pendiente">Pendiente</label>
+                <input type="radio" formControlName="state" value="completada" placeholder=""
+                    id="reserva-state-confirmada">
+                <label for="reserva-state-confirmada">Completada</label>
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('state')?.invalid
+                    && (formData.get('state')?.dirty
+                    || formData.get('state')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('state')?.errors?.['required']){
+                    <span>El estado de la cita es obligatoria</span>
+                    }
+                    @if(formData.get('state')?.errors?.['state']){
+                    <span>El formato del estado es invalido</span>
+                    }
+                    }
+                </div>
+            </div>
+
+            <div class="field">
+                <button type="submit">Register Appointments</button>
+            </div>
+
+        </div>

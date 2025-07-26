@@ -5,18 +5,41 @@
 
 
             <div class="field">
-                <label for="name">Name</label>
+                <label for="name">NAME</label>
                 <input type="text" id="name" formControlName="name" />
                 <div class="error">
-                    Mensaje de error
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('name')?.invalid
+                    && (formData.get('name')?.dirty
+                    || formData.get('name')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('name')?.errors?.['required']){
+                    <span>El nombre es obligatorio</span>
+                    }
+                    @if(formData.get('name')?.errors?.['name']){
+                    <span>El formato del nombre es invalido</span>
+                    }
+                    }
                 </div>
             </div>
 
+
             <div class="field">
-                <label for="type">type:</label>
+                <label for="type">TYPE:</label>
                 <input type="type" id="type" formControlName="type" />
                 <div class="error">
-                    Mensaje de error
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('type')?.invalid
+                    && (formData.get('type')?.dirty
+                    || formData.get('type')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('type')?.errors?.['required']){
+                    <span>El tipo es obligatorio</span>
+                    }
+                    @if(formData.get('type')?.errors?.['type']){
+                    <span>El formato del tipo es invalido</span>
+                    }
+                    }
                 </div>
             </div>
 
@@ -24,25 +47,78 @@
                 <label for="breed">breed: </label>
                 <input type="breed" id="breed" formControlName="breed" />
                 <div class="error">
-                    Mensaje de error
-                </div>
-            </div>
-            <div class="field">
-                <label for="age">age </label>
-                <input type="age" id="age" formControlName="age" />
-                <div class="error">
-                    Mensaje de error
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('breed')?.invalid
+                    && (formData.get('breed')?.dirty
+                    || formData.get('breed')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('breed')?.errors?.['required']){
+                    <span>La raza es obligatoria</span>
+                    }
+                    @if(formData.get('breed')?.errors?.['breed']){
+                    <span>El formato de la raza es invalido</span>
+                    }
+                    }
                 </div>
             </div>
 
+
+            <div class="field">
+                <label for="age">AGE: </label>
+                <input type="age" id="age" formControlName="age" />
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('age')?.invalid
+                    && (formData.get('age')?.dirty
+                    || formData.get('age')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('age')?.errors?.['required']){
+                    <span>La edad es obligatoria</span>
+                    }
+                    @if(formData.get('age')?.errors?.['age']){
+                    <span>El formato de la edad es invalido</span>
+                    }
+                    }
+                </div>
+            </div>
+
+
+
+            <!-- 
             <div>
+                <label for="range">RANGE:</label>
                 <select formControlName="range" id="range-age">
-                    <option value="">Range: </option>
+                    <option value="">Select...: </option>
                     @for (range of ranges; track $index) {
                     <option [value]="range">{{range}}</option>
                     }
                 </select>
+            </div> -->
+
+
+            <div class="field">
+                <label>RANGE: </label>
+                <input type="radio" formControlName="range" value="AÑOS" placeholder="" id="reserva-range-pendiente">
+                <label for="reserva-range-pendiente">Años</label>
+                <input type="radio" formControlName="range" value="MESES" placeholder="" id="reserva-range-confirmada">
+                <label for="reserva-range-confirmada">Meses</label>
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('range')?.invalid
+                    && (formData.get('range')?.dirty
+                    || formData.get('range')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('range')?.errors?.['required']){
+                    <span>La edad es obligatoria</span>
+                    }
+                    @if(formData.get('range')?.errors?.['range']){
+                    <span>El formato del rango es invalido</span>
+                    }
+                    }
+                </div>
             </div>
+
+
 
             <div class="field">
                 <label for="onwer-pets">Owner: </label>
@@ -53,7 +129,25 @@
                     <option [value]="objOwner._id">{{objOwner.name}}</option>
                     }
                 </select>
+                <div class="error">
+                    <!-- Validar el estado del campo actual (email) -->
+                    @if(formData.get('ownerId')?.invalid
+                    && (formData.get('ownerId')?.dirty
+                    || formData.get('ownerId')?.touched)){
+                    <!-- Validar las reglas para el campo -->
+                    @if( formData.get('ownerId')?.errors?.['required']){
+                    <span>El dueño es obligatorio</span>
+                    }
+                    @if(formData.get('ownerId')?.errors?.['ownerId']){
+                    <span>El formato del dueño es invalido</span>
+                    }
+                    }
+                </div>
 
+            </div>
+
+            <div class="field">
+                <button type="submit">Register Pet</button>
             </div>
 
         </div>

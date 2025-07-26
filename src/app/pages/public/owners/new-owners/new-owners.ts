@@ -1,38 +1,31 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PetsServices } from '../../../../services/pets.service';
 import { OwnerServices } from '../../../../services/owner.service';
 import { Router } from '@angular/router';
 
-
-
-
 @Component({
-  selector: 'app-pets',
-  imports: [ReactiveFormsModule,],
-  templateUrl: './new-pets.html',
-  styleUrl: './new-pets.css',
-  
+  selector: 'app-new-owners',
+  imports: [ReactiveFormsModule],
+  templateUrl: './new-owners.html',
+  styleUrl: './new-owners.css'
 })
-export class Pets {
-ranges: any = [];
+export class NewOwners {
+
+  ranges: any = [];
 formData!: FormGroup ;
 owners : any = []
 
 
 constructor(
-  private petsServices : PetsServices,
+  
   private ownersServices : OwnerServices,
   private router: Router
   )
   {
   this.formData = new FormGroup({
     name: new FormControl('',Validators.required),
-    type: new FormControl('',Validators.required),
-    breed: new FormControl('',Validators.required),
-    age: new FormControl('',Validators.required),
-    range: new FormControl('',Validators.required),
-    ownerId: new FormControl( '',Validators.required)
+    email: new FormControl('',Validators.required),
+    phone: new FormControl('',Validators.required),
   });
 }
 
@@ -49,10 +42,10 @@ onSubmit(){
   if(this.formData.valid){
 
     console.log(this.formData.value);
-    this.petsServices.registerPets(this.formData.value).subscribe({
+    this.ownersServices.registerOwners(this.formData.value).subscribe({
       next: ( data ) => {
         console.log(data);
-        this.router.navigateByUrl('/pets/list')
+        this.router.navigateByUrl('/owners/list')
 
       },
       error:(error)=> {
@@ -82,9 +75,5 @@ ngOnInit() {
   ngOnDestroy() {
     console.log( 'ngOnDestroy' );
   }
-
+  
 }
-
-
-
-
